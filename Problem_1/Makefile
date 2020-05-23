@@ -1,25 +1,15 @@
-IDIR=../include
 CC=gcc
-CFLAGS=-I$(DIR)
+CFLAGS=-I.
+DEPS = problem_1.h
+OBJ = problem_1.o main.o 
 
-ODIR=obj
-LDIR=../lib
-
-LIBS=-lm
-
-_DEPS = problem_1.h
-DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
-
-_OBJ = problem_1.o main.o
-OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
-
-$(ODIR)/%.o: %.c $(DEPS)
+%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 main: $(OBJ)
-	$(CC) -o $@ $< $(CFLAGS) $(LIBS)
+	$(CC) -Wall -o $@ $^ $(CFLAGS)
 
 .PHONY: clean
 
 clean:
-	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~
+	rm -f *.o *~ core main
