@@ -1,0 +1,1 @@
+int getSumOfMultiples(int upperLimit);
